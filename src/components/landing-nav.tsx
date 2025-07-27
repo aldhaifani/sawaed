@@ -3,14 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
 import "./landing-nav.css";
 
 export default function LandingNav() {
   return (
     <nav className="fixed top-4 left-1/2 z-50 w-[730px] -translate-x-1/2 px-3">
-      <div className="bg-accent/30 flex items-center justify-between gap-4 rounded-full border border-primary/40 px-4 py-3 shadow-lg backdrop-blur-md">
+      <div className="bg-accent/30 border-primary/40 flex items-center justify-between gap-4 rounded-full border px-4 py-3 shadow-lg backdrop-blur-md">
         <div className="flex items-center gap-2">
           <div className="flex items-center">
             <Image
@@ -41,7 +39,7 @@ export default function LandingNav() {
             FAQ
           </Link>
         </div>
-        <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full relative overflow-hidden shine-effect">
+        <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shine-effect relative overflow-hidden rounded-full">
           <span className="relative z-10">Get Started</span>
           <span className="shine-line"></span>
         </Button>

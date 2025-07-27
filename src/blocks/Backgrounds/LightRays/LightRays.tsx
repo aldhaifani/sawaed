@@ -39,9 +39,9 @@ const hexToRgb = (hex: string): [number, number, number] => {
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return m
     ? [
-        parseInt(m[1] || '', 16) / 255,
-        parseInt(m[2] || '', 16) / 255,
-        parseInt(m[3] || '', 16) / 255,
+        parseInt(m[1] ?? '', 16) / 255,
+        parseInt(m[2] ?? '', 16) / 255,
+        parseInt(m[3] ?? '', 16) / 255,
       ]
     : [1, 1, 1];
 };
@@ -88,12 +88,12 @@ const LightRays: React.FC<LightRaysProps> = ({
   className = "",
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const uniformsRef = useRef<any>(null);
+  const uniformsRef = useRef<Record<string, { value: unknown }> | null>(null);
   const rendererRef = useRef<Renderer | null>(null);
   const mouseRef = useRef({ x: 0.5, y: 0.5 });
   const smoothMouseRef = useRef({ x: 0.5, y: 0.5 });
   const animationIdRef = useRef<number | null>(null);
-  const meshRef = useRef<any>(null);
+  const meshRef = useRef<Mesh | null>(null);
   const cleanupFunctionRef = useRef<(() => void) | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -369,7 +369,7 @@ void main() {
       };
     };
 
-    initializeWebGL();
+    void initializeWebGL();
 
     return () => {
       if (cleanupFunctionRef.current) {
@@ -397,25 +397,25 @@ void main() {
     if (!uniformsRef.current || !containerRef.current || !rendererRef.current)
       return;
 
-    const u = uniformsRef.current;
+    const u = uniformsRef.current as Record<string, { value: unknown }>;
     const renderer = rendererRef.current;
 
-    u.raysColor.value = hexToRgb(raysColor);
-    u.raysSpeed.value = raysSpeed;
-    u.lightSpread.value = lightSpread;
-    u.rayLength.value = rayLength;
-    u.pulsating.value = pulsating ? 1.0 : 0.0;
-    u.fadeDistance.value = fadeDistance;
-    u.saturation.value = saturation;
-    u.mouseInfluence.value = mouseInfluence;
-    u.noiseAmount.value = noiseAmount;
-    u.distortion.value = distortion;
+    (u.raysColor as { value: [number, number, number] }).value = hexToRgb(raysColor);
+    (u.raysSpeed as { value: number }).value = raysSpeed;
+    (u.lightSpread as { value: number }).value = lightSpread;
+    (u.rayLength as { value: number }).value = rayLength;
+    (u.pulsating as { value: number }).value = pulsating ? 1.0 : 0.0;
+    (u.fadeDistance as { value: number }).value = fadeDistance;
+    (u.saturation as { value: number }).value = saturation;
+    (u.mouseInfluence as { value: number }).value = mouseInfluence;
+    (u.noiseAmount as { value: number }).value = noiseAmount;
+    (u.distortion as { value: number }).value = distortion;
 
     const { clientWidth: wCSS, clientHeight: hCSS } = containerRef.current;
     const dpr = renderer.dpr;
     const { anchor, dir } = getAnchorAndDir(raysOrigin, wCSS * dpr, hCSS * dpr);
-    u.rayPos.value = anchor;
-    u.rayDir.value = dir;
+    (u.rayPos as { value: [number, number] }).value = anchor;
+    (u.rayDir as { value: [number, number] }).value = dir;
   }, [
     raysColor,
     raysSpeed,
