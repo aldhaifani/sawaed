@@ -2,14 +2,17 @@
 	Installed from https://reactbits.dev/ts/tailwind/
 */
 
-'use client';
+"use client";
 import React, { useRef, useEffect, useCallback, useMemo } from "react";
 import { gsap } from "gsap";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
 
 gsap.registerPlugin(InertiaPlugin);
 
-const throttle = <T extends unknown[]>(func: (...args: T) => void, limit: number) => {
+const throttle = <T extends unknown[]>(
+  func: (...args: T) => void,
+  limit: number,
+) => {
   let lastCall = 0;
   return function (this: unknown, ...args: T) {
     const now = performance.now();
@@ -294,13 +297,13 @@ const DotGrid: React.FC<DotGridProps> = ({
 
   return (
     <section
-      className={`p-4 flex items-center justify-center h-full w-full relative ${className}`}
+      className={`relative flex h-full w-full items-center justify-center p-4 ${className}`}
       style={style}
     >
-      <div ref={wrapperRef} className="w-full h-full relative">
+      <div ref={wrapperRef} className="relative h-full w-full">
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 w-full h-full pointer-events-none"
+          className="pointer-events-none absolute inset-0 h-full w-full"
         />
       </div>
     </section>

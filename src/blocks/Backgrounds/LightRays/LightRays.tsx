@@ -39,9 +39,9 @@ const hexToRgb = (hex: string): [number, number, number] => {
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return m
     ? [
-        parseInt(m[1] ?? '', 16) / 255,
-        parseInt(m[2] ?? '', 16) / 255,
-        parseInt(m[3] ?? '', 16) / 255,
+        parseInt(m[1] ?? "", 16) / 255,
+        parseInt(m[2] ?? "", 16) / 255,
+        parseInt(m[3] ?? "", 16) / 255,
       ]
     : [1, 1, 1];
 };
@@ -49,7 +49,7 @@ const hexToRgb = (hex: string): [number, number, number] => {
 const getAnchorAndDir = (
   origin: RaysOrigin,
   w: number,
-  h: number
+  h: number,
 ): { anchor: [number, number]; dir: [number, number] } => {
   const outside = 0.2;
   switch (origin) {
@@ -108,7 +108,7 @@ const LightRays: React.FC<LightRaysProps> = ({
           setIsVisible(entry.isIntersecting);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     observerRef.current.observe(containerRef.current);
@@ -400,7 +400,8 @@ void main() {
     const u = uniformsRef.current as Record<string, { value: unknown }>;
     const renderer = rendererRef.current;
 
-    (u.raysColor as { value: [number, number, number] }).value = hexToRgb(raysColor);
+    (u.raysColor as { value: [number, number, number] }).value =
+      hexToRgb(raysColor);
     (u.raysSpeed as { value: number }).value = raysSpeed;
     (u.lightSpread as { value: number }).value = lightSpread;
     (u.rayLength as { value: number }).value = rayLength;
@@ -448,7 +449,7 @@ void main() {
   return (
     <div
       ref={containerRef}
-      className={`w-full h-full pointer-events-none overflow-hidden ${className}`.trim()}
+      className={`pointer-events-none h-full w-full overflow-hidden ${className}`.trim()}
     />
   );
 };
