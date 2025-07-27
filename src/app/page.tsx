@@ -1,15 +1,28 @@
-import { Button } from "@/components/ui/button";
+import LandingNav from "@/components/landing-nav";
+import InteractiveVideo from "@/components/ui/InteractiveVideo";
+import DotGrid from "@/blocks/Backgrounds/DotGrid/DotGrid";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          <span className="text-primary">Sawaed</span> - Your
-          companion to success.
-        </h1>
-        <Button>Button</Button>
-      </div>
-    </main>
+    <div className="relative">
+      <DotGrid
+        dotSize={4}
+        gap={24}
+        baseColor="#E9E3FF"
+        activeColor="#8B5CF6"
+        className="absolute inset-0 -z-10"
+        style={{ height: "100vh", width: "100%", position: "fixed" }}
+      />
+      <main className="relative flex min-h-screen flex-col items-center justify-center text-black">
+        <LandingNav />
+        <div className="container flex flex-col items-center justify-center gap-12 px-16">
+          <InteractiveVideo />
+          <h1 className="text-center text-5xl font-extrabold tracking-tight sm:text-[5rem]">
+            <span className="text-primary">Sawaed</span> <br /> Your companion
+            to success.
+          </h1>
+        </div>
+      </main>
+    </div>
   );
 }
