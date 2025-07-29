@@ -29,7 +29,26 @@ export default function HomePage() {
             present and shape its future.&rdquo; <br />{" "}
             <i className="text-muted-foreground">
               {" "}
-              ~ Sultan Qaboo, may he rest in peace
+              ~ HH, Sultan Qaboo, may he rest in peace.
+            </i>
+          </p>
+        </StickyScrollReveal>
+      </section>
+      <section className="quote_2">
+        <StickyScrollReveal
+          imageUrl="/sultan_haithem.webp"
+          backgroundColor="#fafafa" // Custom light background
+          textColor="#222" // Custom dark text
+          imagePosition="left" // Custom layout
+          scrollHeight="250vh" // Custom scroll speed (faster)
+        >
+          <p>
+            &ldquo;Youths are the wealth of nations and their inexhaustible resource;
+            they are the very arms that build.&rdquo;
+            <br />
+            <i className="text-muted-foreground">
+              {" "}
+              ~ HM, Sultan Haitham, may God protect him.
             </i>
           </p>
         </StickyScrollReveal>

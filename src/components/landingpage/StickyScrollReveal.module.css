@@ -1,21 +1,19 @@
 /* This container creates the scrollable area.
-   The height determines how much you need to scroll to reveal the full text.
-   A larger value (e.g., 400vh) will make the animation "slower". */
+   The height is now controlled by an inline style via a prop. */
 .scrollContainer {
-  height: 300vh;
   position: relative;
 }
 
 /* This is the section that will stick to the screen.
-   It occupies the full viewport height. */
+   The background-color is now controlled by a prop. */
 .stickySection {
   position: sticky;
   top: 0;
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  background-color: #111; /* A dark background for contrast */
-  color: #fff;
+  /* REMOVED: background-color: #111; */
+  /* REMOVED: color: #fff; */
 }
 
 /* We use a grid to easily position the text and image side-by-side. */
@@ -45,13 +43,12 @@
 .word {
   display: inline-block;
   transition: opacity 0.2s ease-in-out;
-  /* THE FIX IS HERE: This forces the browser to render the trailing space */
-  white-space: pre-wrap;
+  white-space: pre-wrap; /* This is still crucial for spacing */
 }
 
 .imageWrapper {
   position: relative;
-  width: 90%;
+  width: 100%;
   height: 80vh;
   border-radius: 1rem;
   overflow: hidden;
@@ -60,7 +57,7 @@
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
   .gridContainer {
-    grid-template-columns: 1fr; /* Stack them on top of each other */
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     padding: 2rem;
     text-align: center;

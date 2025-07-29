@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,8 @@ import "./landing-nav.css";
 export default function LandingNav() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const lastScrollY = useRef<number>(0);
 
   // Handle screen resize
   useEffect(() => {
@@ -66,13 +68,41 @@ export default function LandingNav() {
       document.removeEventListener("keydown", handleEscKey);
     };
   }, [isOpen]);
+  
+  // Handle scroll behavior for navbar
+  useEffect(() => {
+    const handleScroll = (): void => {
+      const currentScrollY = window.scrollY;
+      const scrollThreshold = 10; // Minimum scroll distance to trigger visibility change
+      
+      if (Math.abs(currentScrollY - lastScrollY.current) < scrollThreshold) {
+        return; // Don't change state for small scroll amounts
+      }
+      
+      // Scrolling down - hide the navbar
+      if (currentScrollY > lastScrollY.current) {
+        setIsVisible(false);
+      } 
+      // Scrolling up or at top - show the navbar
+      else {
+        setIsVisible(true);
+      }
+      
+      lastScrollY.current = currentScrollY;
+    };
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleMenu = (): void => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <nav className="fixed top-4 left-1/2 z-50 w-full max-w-[730px] -translate-x-1/2 px-3">
+    <nav className={`fixed left-1/2 z-50 w-full max-w-[730px] -translate-x-1/2 px-3 transform transition-all duration-300 ease-in-out ${isVisible ? 'top-4' : '-top-24'}`}>
       <div className="bg-accent/30 border-primary/40 flex items-center justify-between gap-4 rounded-full border px-4 py-3 shadow-lg backdrop-blur-md">
         <div className="flex items-center gap-2">
           <div className="flex items-center">

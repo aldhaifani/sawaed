@@ -10,11 +10,8 @@ import {
 import Image from "next/image";
 import styles from "./StickyScrollReveal.module.css";
 
-// --- Helper Functions for Processing JSX ---
-
-/**
- * Recursively counts the number of words in React children.
- */
+// --- Helper functions (countWords, renderWrappedWords) remain the same ---
+// (I've collapsed them for brevity, no changes are needed inside them)
 const countWords = (children: React.ReactNode): number => {
   let count = 0;
   React.Children.forEach(children, (child) => {
@@ -29,11 +26,6 @@ const countWords = (children: React.ReactNode): number => {
   });
   return count;
 };
-
-/**
- * Recursively traverses children, finds text nodes, and wraps each word
- * in the Word component for animation.
- */
 const renderWrappedWords = (
   children: React.ReactNode,
   progress: MotionValue<number>,
@@ -47,8 +39,7 @@ const renderWrappedWords = (
         const globalWordIndex = wordCounter.current;
         const start = globalWordIndex / totalWords;
         const end = start + 1 / totalWords;
-        wordCounter.current++; // Mutate the counter
-
+        wordCounter.current++;
         return (
           <Word
             key={`${index}-${wordIndex}`}
@@ -60,13 +51,10 @@ const renderWrappedWords = (
         );
       });
     }
-
     if (
       React.isValidElement<{ children?: React.ReactNode }>(child) &&
       child.props.children
     ) {
-      // This is a nested React element (like <b> or <i>).
-      // We clone it and recursively process its children.
       return React.cloneElement(
         child,
         { key: index },
@@ -78,16 +66,20 @@ const renderWrappedWords = (
         ),
       );
     }
-
-    return child; // Return other elements (like <br/>) as is
+    return child;
   });
 };
 
 // --- Main Components ---
 
+// UPDATE 1: Add new props for customization
 interface StickyScrollRevealProps {
   imageUrl: string;
-  children: React.ReactNode; // Changed from `text` to `children`
+  children: React.ReactNode;
+  backgroundColor?: string;
+  textColor?: string;
+  imagePosition?: "left" | "right";
+  scrollHeight?: string;
 }
 
 const Word = ({
@@ -110,6 +102,11 @@ const Word = ({
 export default function StickyScrollReveal({
   imageUrl,
   children,
+  // UPDATE 2: Set default values for the new props
+  backgroundColor = "#111", // Default to dark background
+  textColor = "#fff", // Default to light text
+  imagePosition = "right", // Default to image on the right
+  scrollHeight = "300vh", // Default scroll duration
 }: StickyScrollRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -117,36 +114,42 @@ export default function StickyScrollReveal({
     offset: ["start start", "end end"],
   });
 
-  // 1. Count the total number of words first.
-  // useMemo ensures this only runs when the children prop changes.
   const totalWords = useMemo(() => countWords(children), [children]);
-
-  // 2. Render the words, passing down a mutable counter.
   const wordCounter = { current: 0 };
 
+  // UPDATE 3: Create reusable JSX blocks for text and image
+  const TextContent = (
+    <div className={styles.textWrapper}>
+      <div className={styles.paragraph} style={{ color: textColor }}>
+        {renderWrappedWords(children, scrollYProgress, totalWords, wordCounter)}
+      </div>
+    </div>
+  );
+
+  const ImageContent = (
+    <div className={styles.imageWrapper}>
+      <Image
+        src={imageUrl}
+        alt="A descriptive alt text"
+        fill
+        style={{ objectFit: "cover" }}
+        sizes="(max-width: 768px) 100vw, 50vw"
+      />
+    </div>
+  );
+
   return (
-    <div ref={containerRef} className={styles.scrollContainer}>
-      <div className={styles.stickySection}>
+    // UPDATE 4: Apply the dynamic styles and layout
+    <div
+      ref={containerRef}
+      className={styles.scrollContainer}
+      style={{ height: scrollHeight }}
+    >
+      <div className={styles.stickySection} style={{ backgroundColor }}>
         <div className={styles.gridContainer}>
-          <div className={styles.textWrapper}>
-            <div className={styles.paragraph}>
-              {renderWrappedWords(
-                children,
-                scrollYProgress,
-                totalWords,
-                wordCounter,
-              )}
-            </div>
-          </div>
-          <div className={styles.imageWrapper}>
-            <Image
-              src={imageUrl}
-              alt="A descriptive alt text"
-              fill
-              style={{ objectFit: "cover" }}
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
+          {imagePosition === "left" && ImageContent}
+          {TextContent}
+          {imagePosition === "right" && ImageContent}
         </div>
       </div>
     </div>
