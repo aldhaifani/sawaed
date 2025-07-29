@@ -25,8 +25,8 @@ export default function HomePage() {
           The component will handle the styling and animation correctly.
         */}
           <p>
-            &ldquo;It is the hands of the youth that build the nation&apos;s present and
-            shape its future.&rdquo; <br /> {" "}
+            &ldquo;It is the hands of the youth that build the nation&apos;s
+            present and shape its future.&rdquo; <br />{" "}
             <i className="text-muted-foreground">
               {" "}
               ~ Sultan Qaboo, may he rest in peace

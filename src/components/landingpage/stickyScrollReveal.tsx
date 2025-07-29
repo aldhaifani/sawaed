@@ -1,7 +1,12 @@
 "use client";
 
 import React, { useRef, useMemo } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import Image from "next/image";
 import styles from "./StickyScrollReveal.module.css";
 
@@ -56,7 +61,10 @@ const renderWrappedWords = (
       });
     }
 
-    if (React.isValidElement<{ children?: React.ReactNode }>(child) && child.props.children) {
+    if (
+      React.isValidElement<{ children?: React.ReactNode }>(child) &&
+      child.props.children
+    ) {
       // This is a nested React element (like <b> or <i>).
       // We clone it and recursively process its children.
       return React.cloneElement(
