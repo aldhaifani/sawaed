@@ -86,9 +86,9 @@ export default function FaqSection() {
           </AccordionTrigger>
           <AccordionContent>
             <p>
-              That&apos;s exactly why Sawaed exists! The platform is designed to help
-              you <em>build</em> your experience from the ground up. You can
-              start by adding your academic skills, participating in
+              That&apos;s exactly why Sawaed exists! The platform is designed to
+              help you <em>build</em> your experience from the ground up. You
+              can start by adding your academic skills, participating in
               volunteering opportunities, or joining workshops listed on the
               platform. Every step you take helps build your profile over time.
             </p>
