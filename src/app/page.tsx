@@ -2,6 +2,7 @@ import LandingNav from "@/components/landingpage/landing-nav";
 import DotGrid from "@/blocks/Backgrounds/DotGrid/DotGrid";
 import HeroSection from "@/components/landingpage/hero-section";
 import StickyScrollReveal from "@/components/landingpage/stickyScrollReveal";
+import FaqSection from "@/components/landingpage/faq-section";
 
 export default function HomePage() {
   return (
@@ -53,6 +54,8 @@ export default function HomePage() {
           </p>
         </StickyScrollReveal>
       </section>
+
+      <FaqSection />
     </div>
   );
 }
