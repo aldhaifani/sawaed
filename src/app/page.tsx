@@ -37,7 +37,7 @@ export default function HomePage() {
       </section>
       <section className="quote_2">
         <StickyScrollReveal
-          imageUrl="/sultan_haithem.webp"
+          imageUrl="/sultan_haithem.jpeg"
           backgroundColor="#fafafa" // Custom light background
           textColor="#222" // Custom dark text
           imagePosition="left" // Custom layout

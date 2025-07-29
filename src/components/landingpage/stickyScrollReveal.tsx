@@ -103,7 +103,7 @@ export default function StickyScrollReveal({
   imageUrl,
   children,
   // UPDATE 2: Set default values for the new props
-  backgroundColor = "#111", // Default to dark background
+  backgroundColor = "#23262A", // Default to dark background
   textColor = "#fff", // Default to light text
   imagePosition = "right", // Default to image on the right
   scrollHeight = "300vh", // Default scroll duration
