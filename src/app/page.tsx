@@ -43,8 +43,8 @@ export default function HomePage() {
           scrollHeight="250vh" // Custom scroll speed (faster)
         >
           <p>
-            &ldquo;Youths are the wealth of nations and their inexhaustible resource;
-            they are the very arms that build.&rdquo;
+            &ldquo;Youths are the wealth of nations and their inexhaustible
+            resource; they are the very arms that build.&rdquo;
             <br />
             <i className="text-muted-foreground">
               {" "}
