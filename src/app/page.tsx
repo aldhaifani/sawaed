@@ -41,7 +41,7 @@ export default function HomePage() {
           backgroundColor="#fafafa" // Custom light background
           textColor="#222" // Custom dark text
           imagePosition="left" // Custom layout
-          scrollHeight="250vh" // Custom scroll speed (faster)
+          scrollHeight="320vh" // Custom scroll speed (faster)
         >
           <p>
             &ldquo;Youths are the wealth of nations and their inexhaustible
