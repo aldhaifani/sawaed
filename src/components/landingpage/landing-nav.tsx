@@ -124,19 +124,19 @@ export default function LandingNav() {
 
         {/* Desktop Navigation */}
         <div className="text-foreground hidden items-center gap-6 font-medium md:flex">
-          <Link href="#" className="hover:text-primary transition-colors">
+          <Link href="#hero" className="hover:text-primary transition-colors">
             Home
           </Link>
 
-          <Link href="#" className="hover:text-primary transition-colors">
+          <Link href="#hero" className="hover:text-primary transition-colors">
             About
           </Link>
 
-          <Link href="#" className="hover:text-primary transition-colors">
+          <Link href="#faq" className="hover:text-primary transition-colors">
             Contact
           </Link>
 
-          <Link href="#" className="hover:text-primary transition-colors">
+          <Link href="#faq" className="hover:text-primary transition-colors">
             FAQ
           </Link>
         </div>
@@ -168,28 +168,28 @@ export default function LandingNav() {
           <div className="flex flex-col px-2 py-4">
             <div className="mb-4 flex flex-col space-y-3">
               <Link
-                href="#"
+                href="#hero"
                 className="hover:bg-primary/10 rounded-md px-4 py-2 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 Home
               </Link>
               <Link
-                href="#"
+                href="#hero"
                 className="hover:bg-primary/10 rounded-md px-4 py-2 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 About
               </Link>
               <Link
-                href="#"
+                href="#faq"
                 className="hover:bg-primary/10 rounded-md px-4 py-2 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 Contact
               </Link>
               <Link
-                href="#"
+                href="#faq"
                 className="hover:bg-primary/10 rounded-md px-4 py-2 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
