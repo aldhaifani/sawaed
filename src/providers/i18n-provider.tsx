@@ -1,7 +1,17 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { dictionaries, type Dictionary, type Locale } from "@/i18n/dictionaries";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import {
+  dictionaries,
+  type Dictionary,
+  type Locale,
+} from "@/i18n/dictionaries";
 
 export type I18nContextValue = {
   locale: Locale;
@@ -31,7 +41,11 @@ function getLang(locale: Locale): string {
   return locale;
 }
 
-export function I18nProvider({ children }: { children: React.ReactNode }): React.ReactElement {
+export function I18nProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}): React.ReactElement {
   const [locale, setLocaleState] = useState<Locale>(getInitialLocale);
 
   useEffect(() => {
@@ -49,7 +63,11 @@ export function I18nProvider({ children }: { children: React.ReactNode }): React
       const parts = path.split(".");
       let current: unknown = dict as unknown;
       for (const p of parts) {
-        if (typeof current === "object" && current !== null && p in (current as Record<string, unknown>)) {
+        if (
+          typeof current === "object" &&
+          current !== null &&
+          p in (current as Record<string, unknown>)
+        ) {
           current = (current as Record<string, unknown>)[p];
         } else {
           return path;
@@ -61,7 +79,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }): React
 
   const value = useMemo<I18nContextValue>(
     () => ({ locale, setLocale: setLocaleState, dict, t }),
-    [locale, dict, t]
+    [locale, dict, t],
   );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;

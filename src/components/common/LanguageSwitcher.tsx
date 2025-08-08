@@ -46,20 +46,24 @@ export function LanguageSwitcher(): React.ReactElement {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-[60]" ref={panelRef}>
+    <div className="fixed right-4 bottom-4 z-[60]" ref={panelRef}>
       {/* Toggle Button */}
       <Button
         className="h-12 w-12 rounded-full shadow-lg"
         aria-label="Open language switcher"
         onClick={() => setOpen((v) => !v)}
       >
-        <ChevronUp className={`transition-transform ${open ? "rotate-180" : "rotate-0"}`} />
+        <ChevronUp
+          className={`transition-transform ${open ? "rotate-180" : "rotate-0"}`}
+        />
       </Button>
 
       {/* Panel */}
       <div
-        className={`absolute bottom-16 right-0 min-w-40 rounded-xl border bg-accent/80 p-2 shadow-xl backdrop-blur-md transition-all duration-200 ${
-          open ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none translate-y-2 opacity-0"
+        className={`bg-accent/80 absolute right-0 bottom-16 min-w-40 rounded-xl border p-2 shadow-xl backdrop-blur-md transition-all duration-200 ${
+          open
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-2 opacity-0"
         }`}
         role="menu"
         aria-hidden={!open}
@@ -69,7 +73,7 @@ export function LanguageSwitcher(): React.ReactElement {
           return (
             <button
               key={lang.code}
-              className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors hover:bg-primary/10 ${
+              className={`hover:bg-primary/10 flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors ${
                 isActive ? "font-semibold" : "font-normal"
               }`}
               onClick={() => onSelect(lang.code)}

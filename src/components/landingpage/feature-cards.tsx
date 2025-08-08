@@ -13,26 +13,56 @@ interface CardSizes {
 
 function getResponsiveSizes(viewportWidth: number): CardSizes {
   if (viewportWidth < 360) {
-    return { width: 280, height: 200, cardDistance: 24, verticalDistance: 36 } as const;
+    return {
+      width: 280,
+      height: 200,
+      cardDistance: 24,
+      verticalDistance: 36,
+    } as const;
   }
   if (viewportWidth < 480) {
-    return { width: 320, height: 220, cardDistance: 28, verticalDistance: 44 } as const;
+    return {
+      width: 320,
+      height: 220,
+      cardDistance: 28,
+      verticalDistance: 44,
+    } as const;
   }
   if (viewportWidth < 768) {
-    return { width: 360, height: 260, cardDistance: 32, verticalDistance: 52 } as const;
+    return {
+      width: 360,
+      height: 260,
+      cardDistance: 32,
+      verticalDistance: 52,
+    } as const;
   }
   if (viewportWidth < 1024) {
-    return { width: 380, height: 300, cardDistance: 36, verticalDistance: 56 } as const;
+    return {
+      width: 380,
+      height: 300,
+      cardDistance: 36,
+      verticalDistance: 56,
+    } as const;
   }
-  return { width: 380, height: 320, cardDistance: 40, verticalDistance: 60 } as const;
+  return {
+    width: 380,
+    height: 320,
+    cardDistance: 40,
+    verticalDistance: 60,
+  } as const;
 }
 
 export default function FeatureCards() {
   const { t } = useI18n();
-  const [sizes, setSizes] = useState<CardSizes>(() => getResponsiveSizes(typeof window !== "undefined" ? window.innerWidth : 1024));
+  const [sizes, setSizes] = useState<CardSizes>(() =>
+    getResponsiveSizes(
+      typeof window !== "undefined" ? window.innerWidth : 1024,
+    ),
+  );
 
   useEffect(() => {
-    const onResize = (): void => setSizes(getResponsiveSizes(window.innerWidth));
+    const onResize = (): void =>
+      setSizes(getResponsiveSizes(window.innerWidth));
     window.addEventListener("resize", onResize, { passive: true });
     return () => window.removeEventListener("resize", onResize);
   }, []);
@@ -47,7 +77,7 @@ export default function FeatureCards() {
         pauseOnHover={true}
       >
         <Card
-          className="border-[#DAE2F8]/50 bg-gradient-to-br from-[#DAE2F8] to-[#D6A4A4] p-6 sm:p-8 shadow-xl backdrop-blur-sm"
+          className="border-[#DAE2F8]/50 bg-gradient-to-br from-[#DAE2F8] to-[#D6A4A4] p-6 shadow-xl backdrop-blur-sm sm:p-8"
           style={{ height: sizes.height, width: sizes.width }}
         >
           <div className="flex h-full flex-col justify-center">
@@ -66,7 +96,9 @@ export default function FeatureCards() {
                 />
               </svg>
             </div>
-            <h3 className="mb-4 text-2xl font-bold text-[#274046]">{t("features.showcaseTitle")}</h3>
+            <h3 className="mb-4 text-2xl font-bold text-[#274046]">
+              {t("features.showcaseTitle")}
+            </h3>
             <p className="text-foreground/80 text-base leading-relaxed">
               {t("features.showcaseDesc")}
             </p>
@@ -74,7 +106,7 @@ export default function FeatureCards() {
         </Card>
 
         <Card
-          className="border-[#9bc5c3]/50 bg-gradient-to-br from-[#616161] to-[#9bc5c3] p-6 sm:p-8 shadow-xl backdrop-blur-sm"
+          className="border-[#9bc5c3]/50 bg-gradient-to-br from-[#616161] to-[#9bc5c3] p-6 shadow-xl backdrop-blur-sm sm:p-8"
           style={{ height: sizes.height, width: sizes.width }}
         >
           <div className="flex h-full flex-col justify-center">
@@ -93,7 +125,9 @@ export default function FeatureCards() {
                 />
               </svg>
             </div>
-            <h3 className="mb-4 text-2xl font-bold text-white">{t("features.guidanceTitle")}</h3>
+            <h3 className="mb-4 text-2xl font-bold text-white">
+              {t("features.guidanceTitle")}
+            </h3>
             <p className="text-foreground/80 text-base leading-relaxed">
               {t("features.guidanceDesc")}
             </p>
@@ -101,7 +135,7 @@ export default function FeatureCards() {
         </Card>
 
         <Card
-          className="border-[#E6DADA]/50 bg-gradient-to-br from-[#E6DADA] to-[#274046] p-6 sm:p-8 shadow-xl backdrop-blur-sm"
+          className="border-[#E6DADA]/50 bg-gradient-to-br from-[#E6DADA] to-[#274046] p-6 shadow-xl backdrop-blur-sm sm:p-8"
           style={{ height: sizes.height, width: sizes.width }}
         >
           <div className="flex h-full flex-col justify-center">
@@ -120,7 +154,9 @@ export default function FeatureCards() {
                 />
               </svg>
             </div>
-            <h3 className="mb-4 text-2xl font-bold text-[#274046]">{t("features.matchedTitle")}</h3>
+            <h3 className="mb-4 text-2xl font-bold text-[#274046]">
+              {t("features.matchedTitle")}
+            </h3>
             <p className="text-foreground/80 text-base leading-relaxed">
               {t("features.matchedDesc")}
             </p>
