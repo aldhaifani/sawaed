@@ -2,20 +2,54 @@
 
 import CardSwap, { Card } from "@/blocks/Components/CardSwap/CardSwap";
 import { useI18n } from "@/providers/i18n-provider";
+import { useEffect, useState } from "react";
+
+interface CardSizes {
+  readonly width: number;
+  readonly height: number;
+  readonly cardDistance: number;
+  readonly verticalDistance: number;
+}
+
+function getResponsiveSizes(viewportWidth: number): CardSizes {
+  if (viewportWidth < 360) {
+    return { width: 280, height: 200, cardDistance: 24, verticalDistance: 36 } as const;
+  }
+  if (viewportWidth < 480) {
+    return { width: 320, height: 220, cardDistance: 28, verticalDistance: 44 } as const;
+  }
+  if (viewportWidth < 768) {
+    return { width: 360, height: 260, cardDistance: 32, verticalDistance: 52 } as const;
+  }
+  if (viewportWidth < 1024) {
+    return { width: 380, height: 300, cardDistance: 36, verticalDistance: 56 } as const;
+  }
+  return { width: 380, height: 320, cardDistance: 40, verticalDistance: 60 } as const;
+}
 
 export default function FeatureCards() {
   const { t } = useI18n();
+  const [sizes, setSizes] = useState<CardSizes>(() => getResponsiveSizes(typeof window !== "undefined" ? window.innerWidth : 1024));
+
+  useEffect(() => {
+    const onResize = (): void => setSizes(getResponsiveSizes(window.innerWidth));
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
   return (
-    <div className="mr-8 flex max-w-md flex-1 items-center justify-end">
+    <div className="mx-0 flex w-full flex-1 items-center justify-center px-0 sm:px-2 md:mx-0 md:mr-8 md:max-w-md md:justify-end">
       <CardSwap
-        width={380}
-        height={320}
-        cardDistance={40}
-        verticalDistance={60}
+        width={sizes.width}
+        height={sizes.height}
+        cardDistance={sizes.cardDistance}
+        verticalDistance={sizes.verticalDistance}
         delay={4000}
         pauseOnHover={true}
       >
-        <Card className="h-[320px] w-[380px] border-[#DAE2F8]/50 bg-gradient-to-br from-[#DAE2F8] to-[#D6A4A4] p-8 shadow-xl backdrop-blur-sm">
+        <Card
+          className="border-[#DAE2F8]/50 bg-gradient-to-br from-[#DAE2F8] to-[#D6A4A4] p-6 sm:p-8 shadow-xl backdrop-blur-sm"
+          style={{ height: sizes.height, width: sizes.width }}
+        >
           <div className="flex h-full flex-col justify-center">
             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-[#DAE2F8]/30">
               <svg
@@ -39,7 +73,10 @@ export default function FeatureCards() {
           </div>
         </Card>
 
-        <Card className="h-[320px] w-[380px] border-[#9bc5c3]/50 bg-gradient-to-br from-[#616161] to-[#9bc5c3] p-8 shadow-xl backdrop-blur-sm">
+        <Card
+          className="border-[#9bc5c3]/50 bg-gradient-to-br from-[#616161] to-[#9bc5c3] p-6 sm:p-8 shadow-xl backdrop-blur-sm"
+          style={{ height: sizes.height, width: sizes.width }}
+        >
           <div className="flex h-full flex-col justify-center">
             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-[#9bc5c3]/30">
               <svg
@@ -63,7 +100,10 @@ export default function FeatureCards() {
           </div>
         </Card>
 
-        <Card className="h-[320px] w-[380px] border-[#E6DADA]/50 bg-gradient-to-br from-[#E6DADA] to-[#274046] p-8 shadow-xl backdrop-blur-sm">
+        <Card
+          className="border-[#E6DADA]/50 bg-gradient-to-br from-[#E6DADA] to-[#274046] p-6 sm:p-8 shadow-xl backdrop-blur-sm"
+          style={{ height: sizes.height, width: sizes.width }}
+        >
           <div className="flex h-full flex-col justify-center">
             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-[#E6DADA]/30">
               <svg

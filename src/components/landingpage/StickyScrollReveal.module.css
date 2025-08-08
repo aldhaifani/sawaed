@@ -72,3 +72,35 @@
     height: 40vh;
   }
 }
+
+/* Tablet optimizations */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .gridContainer {
+    padding: 3rem;
+    gap: 1.5rem;
+  }
+  .paragraph {
+    font-size: 2rem;
+    max-width: 28ch;
+  }
+  .imageWrapper {
+    height: 60vh;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+  .gridContainer {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  .paragraph {
+    font-size: 1.4rem;
+    line-height: 1.35;
+    max-width: 22ch;
+  }
+  .imageWrapper {
+    height: 36vh;
+    border-radius: 0.75rem;
+  }
+}

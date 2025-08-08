@@ -107,9 +107,9 @@ export default function LandingNav() {
 
   return (
     <nav
-      className={`fixed left-1/2 z-50 w-full max-w-[730px] -translate-x-1/2 transform px-3 transition-all duration-300 ease-in-out ${isVisible ? "top-4" : "-top-24"}`}
+      className={`fixed left-1/2 z-50 w-full max-w-[92%] md:max-w-[730px] -translate-x-1/2 transform px-2 md:px-3 transition-all duration-300 ease-in-out ${isVisible ? "top-3 md:top-4" : "-top-24"}`}
     >
-      <div className="bg-accent/30 border-primary/40 flex items-center justify-between gap-4 rounded-full border px-4 py-3 shadow-lg backdrop-blur-md">
+      <div className="bg-accent/30 border-primary/40 flex items-center justify-between gap-3 md:gap-4 rounded-full border px-3 py-2.5 md:px-4 md:py-3 shadow-lg backdrop-blur-md">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2">
             <Image
@@ -171,7 +171,7 @@ export default function LandingNav() {
       {isMobile && (
         <div
           id="mobile-menu"
-          className={`bg-accent/70 border-primary/30 absolute right-3 mt-2 w-56 rounded-lg border shadow-lg backdrop-blur-md transition-all duration-200 ease-in-out ${isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-4 opacity-0"}`}
+          className={`bg-accent/70 border-primary/30 absolute right-2 md:right-3 mt-2 w-[86vw] max-w-sm rounded-lg border shadow-lg backdrop-blur-md transition-all duration-200 ease-in-out ${isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-4 opacity-0"}`}
         >
           <div className="flex flex-col px-2 py-4">
             <div className="mb-4 flex flex-col space-y-3">
