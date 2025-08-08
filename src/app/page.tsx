@@ -1,10 +1,15 @@
+"use client";
+
 import LandingNav from "@/components/landingpage/landing-nav";
 import DotGrid from "@/blocks/Backgrounds/DotGrid/DotGrid";
 import HeroSection from "@/components/landingpage/hero-section";
 import StickyScrollReveal from "@/components/landingpage/stickyScrollReveal";
 import FaqSection from "@/components/landingpage/faq-section";
+import { useI18n } from "@/providers/i18n-provider";
+import { LanguageSwitcher } from "@/components/common/LanguageSwitcher";
 
 export default function HomePage() {
+  const { t } = useI18n();
   return (
     <div className="relative">
       <DotGrid
@@ -26,12 +31,9 @@ export default function HomePage() {
           The component will handle the styling and animation correctly.
         */}
           <p>
-            &ldquo;It is the hands of the youth that build the nation&apos;s
-            present and shape its future.&rdquo; <br />{" "}
-            <i className="text-muted-foreground">
-              {" "}
-              ~ HH, Sultan Qaboo, may he rest in peace.
-            </i>
+            &ldquo;{t("quotes.q1")}&rdquo;
+            <br />
+            <i className="text-muted-foreground">{t("quotes.q1Author")}</i>
           </p>
         </StickyScrollReveal>
       </section>
@@ -44,18 +46,16 @@ export default function HomePage() {
           scrollHeight="320vh" // Custom scroll speed (faster)
         >
           <p>
-            &ldquo;Youths are the wealth of nations and their inexhaustible
-            resource; they are the very arms that build.&rdquo;
+            &ldquo;{t("quotes.q2")}&rdquo;
             <br />
-            <i className="text-muted-foreground">
-              {" "}
-              ~ HM, Sultan Haitham, may God protect him.
-            </i>
+            <i className="text-muted-foreground">{t("quotes.q2Author")}</i>
           </p>
         </StickyScrollReveal>
       </section>
 
       <FaqSection />
+      {/* Floating language switcher */}
+      <LanguageSwitcher />
     </div>
   );
 }

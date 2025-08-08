@@ -6,8 +6,10 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import "./landing-nav.css";
+import { useI18n } from "@/providers/i18n-provider";
 
 export default function LandingNav() {
+  const { t } = useI18n();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(true);
@@ -101,13 +103,15 @@ export default function LandingNav() {
     setIsOpen(!isOpen);
   };
 
+  
+
   return (
     <nav
       className={`fixed left-1/2 z-50 w-full max-w-[730px] -translate-x-1/2 transform px-3 transition-all duration-300 ease-in-out ${isVisible ? "top-4" : "-top-24"}`}
     >
       <div className="bg-accent/30 border-primary/40 flex items-center justify-between gap-4 rounded-full border px-4 py-3 shadow-lg backdrop-blur-md">
         <div className="flex items-center gap-2">
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             <Image
               src="/Logo.svg"
               alt="Sawaed Logo"
@@ -115,7 +119,9 @@ export default function LandingNav() {
               height={36}
               className="h-9 w-9"
             />
-            <span className="text-primary ml-2 text-xl font-bold">Sawaed</span>
+            <span className="text-primary ml-2 text-xl font-bold">
+              {t("nav.brand")}
+            </span>
           </div>
         </div>
 
@@ -125,27 +131,29 @@ export default function LandingNav() {
         {/* Desktop Navigation */}
         <div className="text-foreground hidden items-center gap-6 font-medium md:flex">
           <Link href="#hero" className="hover:text-primary transition-colors">
-            Home
+            {t("nav.home")}
           </Link>
 
           <Link href="#hero" className="hover:text-primary transition-colors">
-            About
+            {t("nav.about")}
           </Link>
 
           <Link href="#faq" className="hover:text-primary transition-colors">
-            Contact
+            {t("nav.contact")}
           </Link>
 
           <Link href="#faq" className="hover:text-primary transition-colors">
-            FAQ
+            {t("nav.faq")}
           </Link>
         </div>
 
         {/* Get Started Button - Always visible */}
         <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shine-effect relative hidden overflow-hidden rounded-full md:flex">
-          <span className="relative z-10">Get Started</span>
+          <span className="relative z-10">{t("nav.getStarted")}</span>
           <span className="shine-line"></span>
         </Button>
+
+        {/* Language Switch removed: now a floating button elsewhere */}
 
         {/* Mobile Menu Button */}
         <button
@@ -172,37 +180,38 @@ export default function LandingNav() {
                 className="hover:bg-primary/10 rounded-md px-4 py-2 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Home
+                {t("nav.home")}
               </Link>
               <Link
                 href="#hero"
                 className="hover:bg-primary/10 rounded-md px-4 py-2 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                About
+                {t("nav.about")}
               </Link>
               <Link
                 href="#faq"
                 className="hover:bg-primary/10 rounded-md px-4 py-2 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Contact
+                {t("nav.contact")}
               </Link>
               <Link
                 href="#faq"
                 className="hover:bg-primary/10 rounded-md px-4 py-2 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                FAQ
+                {t("nav.faq")}
               </Link>
             </div>
             <Button
               className="bg-primary hover:bg-primary/90 text-primary-foreground shine-effect relative w-full overflow-hidden rounded-full"
               onClick={() => setIsOpen(false)}
             >
-              <span className="relative z-10">Get Started</span>
+              <span className="relative z-10">{t("nav.getStarted")}</span>
               <span className="shine-line"></span>
             </Button>
+            {/* Language Switch removed from mobile menu */}
           </div>
         </div>
       )}

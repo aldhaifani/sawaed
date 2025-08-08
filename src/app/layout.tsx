@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 import { LenisProvider } from "@/providers/lenis-provider";
+import { I18nProvider } from "@/providers/i18n-provider";
 
 export const metadata: Metadata = {
   title: "Sawaed",
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body>
-        <LenisProvider>{children}</LenisProvider>
+        <I18nProvider>
+          <LenisProvider>{children}</LenisProvider>
+        </I18nProvider>
       </body>
     </html>
   );

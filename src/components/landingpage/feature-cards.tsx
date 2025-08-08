@@ -1,8 +1,10 @@
 "use client";
 
 import CardSwap, { Card } from "@/blocks/Components/CardSwap/CardSwap";
+import { useI18n } from "@/providers/i18n-provider";
 
 export default function FeatureCards() {
+  const { t } = useI18n();
   return (
     <div className="mr-8 flex max-w-md flex-1 items-center justify-end">
       <CardSwap
@@ -30,12 +32,9 @@ export default function FeatureCards() {
                 />
               </svg>
             </div>
-            <h3 className="mb-4 text-2xl font-bold text-[#274046]">
-              Showcase Your Talent
-            </h3>
+            <h3 className="mb-4 text-2xl font-bold text-[#274046]">{t("features.showcaseTitle")}</h3>
             <p className="text-foreground/80 text-base leading-relaxed">
-              Create a standout digital portfolio. Add skills, upload projects,
-              and let your achievements tell your unique story.
+              {t("features.showcaseDesc")}
             </p>
           </div>
         </Card>
@@ -57,13 +56,9 @@ export default function FeatureCards() {
                 />
               </svg>
             </div>
-            <h3 className="mb-4 text-2xl font-bold text-white">
-              Get Personalized Guidance
-            </h3>
+            <h3 className="mb-4 text-2xl font-bold text-white">{t("features.guidanceTitle")}</h3>
             <p className="text-foreground/80 text-base leading-relaxed">
-              Receive AI-powered recommendations to develop the exact skills
-              employers need. Your personalized path to career readiness starts
-              here.
+              {t("features.guidanceDesc")}
             </p>
           </div>
         </Card>
@@ -85,12 +80,9 @@ export default function FeatureCards() {
                 />
               </svg>
             </div>
-            <h3 className="mb-4 text-2xl font-bold text-[#274046]">
-              Find Matched Opportunities
-            </h3>
+            <h3 className="mb-4 text-2xl font-bold text-[#274046]">{t("features.matchedTitle")}</h3>
             <p className="text-foreground/80 text-base leading-relaxed">
-              Discover opportunities perfectly matched to your new skills and
-              profile. Jobs, internships, and volunteering—all in one place.
+              {t("features.matchedDesc")}
             </p>
           </div>
         </Card>
