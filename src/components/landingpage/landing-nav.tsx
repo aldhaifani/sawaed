@@ -146,9 +146,19 @@ export default function LandingNav() {
         </div>
 
         {/* Get Started Button - Always visible */}
-        <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shine-effect relative hidden overflow-hidden rounded-full md:flex">
-          <span className="relative z-10">{t("nav.getStarted")}</span>
-          <span className="shine-line"></span>
+        <Button
+          asChild
+          className="bg-primary hover:bg-primary/90 text-primary-foreground shine-effect relative hidden overflow-hidden rounded-full md:flex"
+        >
+          <a
+            href="https://sawaed-app.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Get started on Sawaed app"
+          >
+            <span className="relative z-10">{t("nav.getStarted")}</span>
+            <span className="shine-line"></span>
+          </a>
         </Button>
 
         {/* Language Switch removed: now a floating button elsewhere */}
@@ -203,11 +213,19 @@ export default function LandingNav() {
               </Link>
             </div>
             <Button
+              asChild
               className="bg-primary hover:bg-primary/90 text-primary-foreground shine-effect relative w-full overflow-hidden rounded-full"
-              onClick={() => setIsOpen(false)}
             >
-              <span className="relative z-10">{t("nav.getStarted")}</span>
-              <span className="shine-line"></span>
+              <a
+                href="https://sawaed-app.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                aria-label="Get started on Sawaed app"
+              >
+                <span className="relative z-10">{t("nav.getStarted")}</span>
+                <span className="shine-line"></span>
+              </a>
             </Button>
             {/* Language Switch removed from mobile menu */}
           </div>
